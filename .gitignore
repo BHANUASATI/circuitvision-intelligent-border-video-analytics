@@ -1,0 +1,65 @@
+# ── Environment ───────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+
+# ── Python ────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+*.egg
+pip-wheel-metadata/
+
+# ── Node / Frontend ───────────────────────────────────────────
+node_modules/
+frontend/dist/
+frontend/.vite/
+*.log
+npm-debug.log*
+
+# ── Secrets / Certs ───────────────────────────────────────────
+nginx/ssl/*.crt
+nginx/ssl/*.key
+nginx/ssl/*.pem
+*.pem
+*.p12
+*.pfx
+
+# ── Data / Models ─────────────────────────────────────────────
+/models/
+/data/
+*.pt
+*.onnx
+*.engine
+*.trt
+
+# ── IDE ───────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ── Test / Coverage ───────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# ── Docker ────────────────────────────────────────────────────
+docker-compose.override.yml
+
+# ── Alembic ───────────────────────────────────────────────────
+# Keep version files but not __pycache__
+backend/migrations/versions/__pycache__/

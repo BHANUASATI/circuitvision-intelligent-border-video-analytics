@@ -1,0 +1,45 @@
+# ── Core ──────────────────────────────────────────────────────
+fastapi==0.111.0
+uvicorn[standard]==0.29.0
+pydantic==2.7.1
+pydantic-settings==2.2.1
+python-multipart==0.0.9
+
+# ── Computer Vision ───────────────────────────────────────────
+opencv-python-headless==4.9.0.80
+numpy==1.26.4
+Pillow==10.3.0
+
+# ── YOLO Detection ────────────────────────────────────────────
+ultralytics==8.2.18        # YOLOv8 / YOLOv9
+
+# ── Object Tracking ───────────────────────────────────────────
+lapx==0.5.5                # LAP assignment (ByteTrack dependency)
+# ByteTrack integrated inline (no pip package — included in modules/)
+
+# ── Face Recognition ──────────────────────────────────────────
+insightface==0.7.3
+onnxruntime-gpu==1.17.3    # swap to onnxruntime for CPU-only
+# fallback: deepface==0.0.92
+
+# ── ANPR / OCR ────────────────────────────────────────────────
+easyocr==1.7.1
+imutils==0.5.4
+
+# ── Stream Ingestion ──────────────────────────────────────────
+av==12.0.0                 # PyAV — RTSP / ONVIF via GStreamer/FFmpeg
+onvif-zeep==0.2.12         # ONVIF camera discovery & control
+
+# ── Redis ─────────────────────────────────────────────────────
+redis[hiredis]==5.0.4
+
+# ── HTTP Client ───────────────────────────────────────────────
+httpx==0.27.0
+
+# ── Utilities ─────────────────────────────────────────────────
+python-dotenv==1.0.1
+loguru==0.7.2
+shapely==2.0.4             # polygon-based virtual fence geometry
+scipy==1.13.0
+scikit-learn==1.4.2
+hashlib-compat==1.0.0      # evidence SHA-256 hashing wrapper
