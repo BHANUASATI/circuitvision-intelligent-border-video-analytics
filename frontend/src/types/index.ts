@@ -66,7 +66,7 @@ export interface Incident {
 }
 export interface IncidentCreate {
   title: string; description: string; severity: string;
-  camera_id?: string; alert_ids?: string[];
+  status?: string; camera_id?: string; alert_ids?: string[];
 }
 
 // ── Analytics ─────────────────────────────────────────────────

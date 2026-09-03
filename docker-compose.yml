@@ -81,13 +81,15 @@ services:
       - face_db_data:/data/face_db
       - plate_db_data:/data/plate_db
     networks: [ibvap-net]
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: [gpu]
+    # GPU support disabled for CPU-only / Mac environments
+    # Uncomment below on a Linux server with Nvidia GPU + nvidia-container-toolkit
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
     depends_on:
       redis:
         condition: service_healthy
