@@ -47,9 +47,8 @@ RUN groupadd -r ibvap && useradd -r -g ibvap -u 1001 ibvap && \
 WORKDIR /app
 COPY --chown=ibvap:ibvap . .
 
-# Run Alembic migrations then start server
-COPY --chown=ibvap:ibvap entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+# entrypoint.sh is included in the COPY above
+RUN chmod +x /app/entrypoint.sh && ln -s /app/entrypoint.sh /entrypoint.sh
 
 USER ibvap
 
