@@ -9,6 +9,7 @@ email-validator==2.1.1
 # ── Database ──────────────────────────────────────────────────
 sqlalchemy[asyncio]==2.0.30
 asyncpg==0.29.0              # async PostgreSQL driver
+psycopg2-binary==2.9.9       # sync driver for Alembic migrations
 alembic==1.13.1              # migrations
 
 # ── Auth & Security ───────────────────────────────────────────
