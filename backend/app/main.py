@@ -9,6 +9,8 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from prometheus_fastapi_instrumentator import Instrumentator
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
@@ -107,9 +109,25 @@ async def health():
     return {"status": "ok", "service": "ibvap-backend", "version": settings.app_version}
 
 
-@app.get("/", include_in_schema=False)
-async def root():
-    return JSONResponse({"service": "IBVAP Backend", "status": "running"})
+# ── Serve React Frontend (SPA) ────────────────────────────────
+import os
+_STATIC_DIR = os.path.join(os.path.dirname(__file__), "static")
+
+if os.path.isdir(_STATIC_DIR):
+    app.mount("/assets", StaticFiles(directory=os.path.join(_STATIC_DIR, "assets")), name="assets")
+
+    @app.get("/", include_in_schema=False)
+    @app.get("/{full_path:path}", include_in_schema=False)
+    async def serve_spa(full_path: str = ""):
+        # API routes are handled above — only catch frontend routes here
+        index = os.path.join(_STATIC_DIR, "index.html")
+        if os.path.isfile(index):
+            return FileResponse(index)
+        return JSONResponse({"service": "IBVAP Backend", "status": "running"})
+else:
+    @app.get("/", include_in_schema=False)
+    async def root():
+        return JSONResponse({"service": "IBVAP Backend", "status": "running"})
 
 
 # ── Global exception handler ──────────────────────────────────
